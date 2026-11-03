@@ -10,6 +10,11 @@ export-build-version() {
 	commitVersion=$(git rev-parse --short=4 HEAD)
 	tagVersion=$(git tag --points-at HEAD | head -n1)
 
+	if [[ -z "$commitVersion" && -z "$tagVersion" ]]; then
+		export GIGGLER_GOLANG_VERSION="unknown"
+		return
+	fi
+
 	if [[ -n "$(git status --porcelain)" ]]; then
 		export GIGGLER_GOLANG_VERSION="${commitVersion}-dirty"
 		return
