@@ -2,9 +2,10 @@
 
 # The script exports the build version for the project.
 # The build version can be one of the following:
-# - <commit>-dirty: if the working directory has uncommitted changes
-# - <commit>: if the current commit is not tagged
-# - <tag>: if the current commit is tagged
+# - `unknown`: if git or the repository isn't available
+# - `<commit>-dirty`: if the working directory has uncommitted changes
+# - `<commit>`: if the current commit is not tagged
+# - `<tag>`: if the current commit is tagged
 
 export-build-version() {
 	commitVersion=$(git rev-parse --short=4 HEAD)
